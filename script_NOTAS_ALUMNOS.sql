@@ -71,3 +71,85 @@ BEGIN
 END;
 
 COMMIT;
+
+-- inserts / .
+
+INSERT INTO NOTAS_ALUMNOS (
+    NOMBRE_ALUMNO,
+    NOTA1, NOTA2, NOTA3, NOTA4, NOTA5,
+    NOTA6, NOTA7, NOTA8, NOTA9, NOTA10,
+    SUMA, PROMEDIO
+) VALUES (
+    'Juan Perez',
+    4.0, 3.5, 4.2, 3.8, 4.5,
+    4.1, 3.9, 4.3, 4.0, 3.7,
+    40.0, 4.0
+);
+
+INSERT INTO NOTAS_ALUMNOS VALUES (
+    DEFAULT, 'Maria Lopez',
+    3.0, 3.5, 3.2, 3.8, 3.5,
+    3.1, 3.9, 3.3, 3.0, 3.7,
+    34.0, 3.4, SYSDATE
+);
+
+INSERT INTO NOTAS_ALUMNOS VALUES (
+    DEFAULT, 'Carlos Ruiz',
+    5.0, 4.8, 4.9, 5.0, 4.7,
+    4.8, 5.0, 4.9, 5.0, 4.8,
+    48.9, 4.89, SYSDATE
+);
+
+INSERT INTO NOTAS_ALUMNOS VALUES (
+    DEFAULT, 'Ana Torres',
+    2.5, 3.0, 2.8, 3.2, 3.0,
+    2.9, 3.1, 3.0, 2.7, 3.3,
+    29.5, 2.95, SYSDATE
+);
+
+COMMIT;
+
+-- store procd / .
+BEGIN
+    INSERTAR_NOTAS('Luis Gomez',
+        4,4,4,4,4, 4,4,4,4,4,
+        40,4
+    );
+
+    INSERTAR_NOTAS('Sofia Ramirez',
+        3,3,3,3,3, 3,3,3,3,3,
+        30,3
+    );
+
+    INSERTAR_NOTAS('Diego Martinez',
+        5,5,5,5,5, 5,5,5,5,5,
+        50,5
+    );
+
+    INSERTAR_NOTAS('Laura Hernandez',
+        2,2,2,2,2, 2,2,2,2,2,
+        20,2
+    );
+END;
+/
+
+commit;
+
+-- select
+SELECT NOMBRE_ALUMNO, SUMA, PROMEDIO, FECHA_REGISTRO
+FROM NOTAS_ALUMNOS
+ORDER BY ID;
+
+-- prueba masiva .
+BEGIN
+    FOR i IN 1..20 LOOP
+        INSERTAR_NOTAS(
+            'Alumno_' || i,
+            3,4,5,3,4, 5,4,3,5,4,
+            40,4
+        );
+    END LOOP;
+END;
+/
+
+COMMIT;
