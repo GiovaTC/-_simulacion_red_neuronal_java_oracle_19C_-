@@ -9,7 +9,8 @@ public class RedNeuronal {
         return suma;
     }
 
-    public static double calcularPromedio(double suma) {
-        return suma / 5.0;
+    public static double calcularPromedio(double suma, int cantidad)
+    {
+        return suma / cantidad;
     }
 }
